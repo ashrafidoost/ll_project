@@ -138,9 +138,13 @@ ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost 127.0.0.1 .onrender.c
 # 2. Add WhiteNoise to Middleware (Put it right after SecurityMiddleware)
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware', # <--- Add this
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    # ... rest of your middleware
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # Should be here
+    'django.contrib.sessions.middleware.SessionMiddleware', # Must be before Auth
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware', # Must be here
+    'django.contrib.messages.middleware.MessageMiddleware', # Must be here
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
 # 3. Database: Use dj-database-url to automatically connect to Render's Postgres
