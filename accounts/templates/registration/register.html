@@ -1,0 +1,16 @@
+{% extends "learning_logs/base.html" %}
+
+{% block page_header %}
+<h3>Registration</h3>
+{% endblock page_header %}
+
+{% block content %}
+<div class="container-fluid">
+    <form action="{% url 'accounts:register' %}" method="post">
+        {% csrf_token %}
+        {{form.as_div}}
+        <button name="submit" class="btn btn-primary btm-lg mt-1">Register</button>
+    </form>
+</div>
+
+{% endblock content %}
