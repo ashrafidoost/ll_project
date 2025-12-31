@@ -6,3 +6,6 @@ pip install -r requirements.txt
 
 python manage.py collectstatic --no-input
 python manage.py migrate
+
+# Add this line to create the user automatically using the variables above
+python manage.py createsuperuser --no-input || true
